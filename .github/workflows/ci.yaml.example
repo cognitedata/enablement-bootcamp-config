@@ -1,0 +1,48 @@
+name: actions
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  AzureSecrets:
+    name: Bootstrap Azure
+    environment: prod
+    runs-on: ubuntu-latest
+
+    env:
+      CDF_PROJECT: enablement-bootcamp
+      CDF_CLUSTER: greenfield
+      IDP_TENANT: 0d75f6b8-c6b9-4e84-baca-503e08aa7e4a
+      CLIENT_ID: 3fd3a54d-5d62-4ddb-9d4b-bb3af6b084d3
+      CDF_HOST: https://greenfield.cognitedata.com/
+
+    steps:
+      - uses: actions/checkout@v3
+      #- uses: Azure/login@v1
+      #  with:
+      #    creds: ${{ secrets.AZURE_CREDENTIALS }}
+      #- uses: Azure/get-keyvault-secrets@v1
+      #  with:
+      #    keyvault: "kv-cog-enablement-dev"
+      #    #secrets: 'BOOTSTRAP-CDF-HOST, BOOTSTRAP-CDF-PROJECT, BOOTSTRAP-IDP-CLIENT-ID, BOOTSTRAP-IDP-CLIENT-SECRET, BOOTSTRAP-IDP-SCOPES, BOOTSTRAP-IDP-TOKEN-URL, BOOTSTRAP-CDF-TENANT-ID'
+      #    secrets: 'bootstrap-cli'
+      #  id: azureSecrets
+      - name: echo
+        shell: bash
+        run: echo "$GITHUB_CONTEXT"
+      - uses: cognitedata/inso-bootstrap-cli@main
+        env:
+          BOOTSTRAP_IDP_CLIENT_ID: ${{ env.CLIENT_ID }}
+          BOOTSTRAP_CDF_HOST: ${{ env.CDF_HOST }}
+          BOOTSTRAP_CDF_PROJECT: ${{ env.CDF_PROJECT }}
+          BOOTSTRAP_IDP_CLIENT_SECRET: ${{ secrets.CDF_BOOTSTRAP_SECRET }}
+          # BOOTSTRAP_IDP_CLIENT_ID: ${{ steps.azureSecrets.outputs.bootstrap-cli }}
+          BOOTSTRAP_IDP_TOKEN_URL: https://login.microsoftonline.com/${{ env.IDP_TENANT }}/oauth2/v2.0/token
+          BOOTSTRAP_IDP_SCOPES: ${{ env.CDF_HOST }}.default
+
+        with:
+          config_file: ./config/config-deploy-ice-cream.yml
+            # "yes"|"no" deploy with special groups and aad_mappings
+            #with_special_groups: "yes"

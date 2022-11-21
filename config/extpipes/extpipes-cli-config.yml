@@ -1,0 +1,51 @@
+---
+# follows the same parameter structure as the DB extractor configuration
+cognite: # kwargs to pass to the CogniteClient, Environment variable format: ${ENVIRONMENT_VARIABLE}
+  # host: https://${EXTPIPES_CDF_CLUSTER}.cognitedata.com/
+    host: ${EXTPIPES_CDF_HOST}
+    project: ${EXTPIPES_CDF_PROJECT}
+  #
+  # AAD IdP login credentials:
+  #
+    idp-authentication:
+        client-id: ${EXTPIPES_IDP_CLIENT_ID}
+        secret: ${EXTPIPES_IDP_CLIENT_SECRET}
+        scopes:
+            - ${EXTPIPES_IDP_SCOPES}
+        token_url: ${EXTPIPES_IDP_TOKEN_URL}
+
+logger:
+    file:
+        path: ./logs/extpipes-deploy.log
+        level: INFO
+    console:
+        level: INFO
+
+# extpipe-pattern only documentation atm
+extpipe-pattern: '{source}:{short-name}:{rawtable-name}:{suffix}'
+
+# can contain multiple contacts, can be overwritten on pipeline level
+default-contacts:
+    - name: [Contact name]
+      email: [Contact email]
+      role: [Role name]
+      send-notification: true
+
+rawdbs:
+  # list of raw-dbs > containing rawtables > containing pipelines
+    - rawdb-name: [Node name]:db
+      dataset-external-id: [Node name]:ds
+      short-name: [Short name for raw DB]
+      rawtables:
+          - rawtable-name: [table name]
+            pipelines:
+        # source is a short-name identifying the pipeline source being
+        # a 'db-extractor (db)', an 'Azure Function (az-func)',
+        # or 'Azure Data Factory (adf)', 'Python script (py)', ..
+                - source: [Source type]
+                  schedule: On trigger
+                  contacts:
+                      - name: [Contact name]
+                        email: [Contact e-mail]
+                        role: [Contact role]
+                        send-notification: false
