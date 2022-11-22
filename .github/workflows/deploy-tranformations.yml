@@ -1,0 +1,55 @@
+---
+#######################################
+# AUTHENTICATION OPTION 1:            #
+#                          Using OIDC #
+#######################################
+name: Deploy transformations
+
+on:
+    push:
+        #branches: [main]
+        branches: [none]
+
+jobs:
+    deploy:
+        name: Deploy transformations
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                environment: [test, prod]
+                include:
+                    - environment: test
+                      # CDF cluster, like bluefield or greenfield
+                      CDF_CLUSTER: [CDF cluster]
+                      # CDF Project name
+                      CDF_PROJECT: [CDF project]
+                      # Azure AD tenant id
+                      IDP_TENANT: [AAD tenant id]
+                    - environment: prod
+                      # CDF cluster, like bluefield or greenfield
+                      CDF_CLUSTER: [CDF cluster]
+                      # CDF Project name
+                      CDF_PROJECT: [CDF project]
+                      # Azure AD tenant id
+                      IDP_TENANT: [AAD tenant id]
+
+        environment: ${{ matrix.environment}}
+        env:
+            CDF_HOST: https://${{ matrix.CDF_CLUSTER }}.cognitedata.com/
+            # Credentials to be used when running your transformations,
+            # as referenced in your manifests
+            COGNITE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+            COGNITE_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+            CDF_PROJECT_NAME: ${{ matrix.CDF_PROJECT }}
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: cognitedata/transformations-cli@main
+              with:
+                  path: config/transformations
+                  client-id: ${{ secrets.CLIENT_ID }}
+                  client-secret: ${{ secrets.CLIENT_SECRET }}
+                  cdf-project-name: ${{ matrix.CDF_PROJECT }}
+                  token-url: https://login.microsoftonline.com/${{ matrix.IDP_TENANT }}/oauth2/v2.0/token
+                  scopes: ${{ env.CDF_HOST }}.default
+                  cluster: ${{ matrix.CDF_CLUSTER }}

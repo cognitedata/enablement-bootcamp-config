@@ -1,0 +1,52 @@
+---
+name: deploy-extpipes-cli
+
+on:
+    push:
+        branches:
+            #- main
+            - none
+
+jobs:
+    deploy_extpipes:
+        name: deploy extpipes-cli
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                environment: [test, prod]
+                include:
+                    - environment: test
+                      # CDF cluster, like bluefield or greenfield
+                      CDF_CLUSTER: [CDF cluster]
+                      # CDF Project name
+                      CDF_PROJECT: [CDF project]
+                      # Azure AD tenant id
+                      IDP_TENANT: [AAD tenant id]
+                    - environment: prod
+                      # CDF cluster, like bluefield or greenfield
+                      CDF_CLUSTER: [CDF cluster]
+                      # CDF Project name
+                      CDF_PROJECT: [CDF project]
+                      # Azure AD tenant id
+                      IDP_TENANT: [AAD tenant id]
+
+        environment: ${{ matrix.environment}}
+        env:
+            CDF_HOST: https://${{ matrix.CDF_CLUSTER }}.cognitedata.com/
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: cognitedata/inso-extpipes-cli@main
+              env:
+                  EXTPIPES_IDP_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+                  EXTPIPES_IDP_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+                  EXTPIPES_CDF_HOST: ${{ env.CDF_HOST }}
+                  EXTPIPES_CDF_PROJECT: ${{ matrix.CDF_PROJECT }}
+                  EXTPIPES_IDP_TOKEN_URL: https://login.microsoftonline.com/${{ matrix.IDP_TENANT }}/oauth2/v2.0/token
+                  EXTPIPES_IDP_SCOPES: ${{ env.CDF_HOST }}.default
+
+              with:
+                  # Path to extpipes cli configuration file
+                  config_file: ./config/extpipes/extpipes-cli-config.yml
+            # "yes"|"no" deploy with special groups and aad_mappings
+            #with_special_groups: "yes"
