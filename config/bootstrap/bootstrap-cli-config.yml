@@ -1,30 +1,7 @@
 ---
 bootstrap:
-<<<<<<< HEAD
   # This is a template bootstrap CLI file that will need to be completed. For a more complete example look at 
   # https://github.com/cognitedata/inso-bootstrap-cli/blob/main/configs/config-deploy-example-v2.yml
-=======
-  # 220426 pa:
-  #  - extended comments explaining options
-  # 220422 pa:
-  #   - new v2-syntax making *all* bootstrap configuration parameters
-  #     available through explicit named properties.
-  #
-  # Motivation for the breaking change:
-  # Compared to v1, which used an extremly sparse syntax, using values as yaml key and values.
-  # The v2 change is required to support loading and validating the configuration through
-  # Python 'dataclasses', which is a best practice and used by most Cognite yaml-based
-  # configurations.
-
-  # bootstrap supports three sections
-  # 1. 'features'
-  #   - making cli parameters and customizable naming-elements available
-  # 2. 'idp-cdf-mappings'
-  #   - providing multi CDF Project support of IdP- to CDF-Group mappings
-  # 3. 'namespaces'
-  #   - a hierarchy of 'namespaces' => 'ns-nodes'
->>>>>>> 48de7cb (Removed parts that needs to be filled in by participants)
-
 
     features:
     # v2 adding as features, available as cli paramaters only atm (v1)
@@ -77,16 +54,7 @@ bootstrap:
 
     # Mapping between IDP (Azure Active Directory) groups and CDF groups.
     idp-cdf-mappings:
-<<<<<<< HEAD
     # Support multiple CDF Projects, like dev/test/prod in one config. 
-=======
-    # Prior (v1) named 'aad_mappings'.
-    # Values for 'cdf-group' requires knowledge of resulting CDF Group names
-    #
-    # Now supporting multiple CDF Projects, like dev/test/prod
-    # in one config. Optimization, to reduce redundant maintenance.
-    # BOOTSTRAP_CDF_PROJECT env-variable is available and is used to select.
->>>>>>> 48de7cb (Removed parts that needs to be filled in by participants)
         - cdf-project: [CDF project name - test]
           mappings:
               - cdf-group: cdf:all:owner
@@ -114,11 +82,7 @@ bootstrap:
 
 
     namespaces:
-<<<<<<< HEAD
         # Typical config will have separate namespace by data source ("src") and use cases ("uc")
-=======
-    # This is a typical config file that is separated by data source and use cases
->>>>>>> 48de7cb (Removed parts that needs to be filled in by participants)
         - ns-name: [Namespace name]
           description: [Description]
 
@@ -132,12 +96,12 @@ bootstrap:
 # Following the same parameter structure as the 'Cognite Python Extractor-Utilities'
 # and 'Cognite DB Extractor' configuration.
 cognite: # kwargs to pass to the CogniteClient, Environment variable format: ${ENVIRONMENT_VARIABLE_NAME}
-#   # host: https://${BOOTSTRAP_CDF_CLUSTER}.cognitedata.com/
+    # host: https://${BOOTSTRAP_CDF_CLUSTER}.cognitedata.com/
     host: ${BOOTSTRAP_CDF_HOST}
     project: ${BOOTSTRAP_CDF_PROJECT}
-#   #
-#   # AAD IdP login credentials:
-#   #
+    #
+    # AAD IdP login credentials:
+    #
     idp-authentication:
         client-id: ${BOOTSTRAP_IDP_CLIENT_ID}
         secret: ${BOOTSTRAP_IDP_CLIENT_SECRET}
