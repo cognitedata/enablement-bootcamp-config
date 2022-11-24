@@ -63,22 +63,6 @@ bootstrap:
               - cdf-group: cdf:all:read
                 idp-source-id: [Azure AD group id]
                 idp-source-name: [Azure AD group name]
-              # Template for additional cdf-group mappings
-              - cdf-group: [CDF access managment group name]
-                idp-source-id: [Azure AD group id]
-                idp-source-name: [Azure AD group name]
-        - cdf-project: [CDF project name - prod]
-          mappings:
-              - cdf-group: cdf:all:owner
-                idp-source-id: [Azure AD group id]
-                idp-source-name: [Azure AD group name]
-              - cdf-group: cdf:all:read
-                idp-source-id: [Azure AD group id]
-                idp-source-name: [Azure AD group name]
-              # Template for additional cdf-group mappings
-              - cdf-group: [CDF access managment group name]
-                idp-source-id: [Azure AD group id]
-                idp-source-name: [Azure AD group name]
 
 
     namespaces:
