@@ -3,7 +3,7 @@
 externalId: tr-asset-sample
 name: create_asset_sample
 query:
-  file: my_transformation.sql
+  file: transformation.sql
 destination:
   type: asset_hierarchy
 ignoreNullFields: true
@@ -51,4 +51,4 @@ authentication:
   # Optional: If idP requires providing the scopes
   cdfProjectName: ${CDF_PROJECT_NAME}
   scopes:
-    - https://greenfield.cognitedata.com/.default
+    - https://westeurope-1.cognitedata.com/.default
