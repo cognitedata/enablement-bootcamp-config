@@ -57,6 +57,9 @@ bootstrap:
     # Support multiple CDF Projects, like dev/test/prod in one config. 
         - cdf-project: [CDF project name - test]
           mappings:
+              - cdf-group: cdf:root
+                idp-source-id: [Azure AD group id]
+                idp-source-name: [Azure AD group name]
               - cdf-group: cdf:all:owner
                 idp-source-id: [Azure AD group id]
                 idp-source-name: [Azure AD group name]
