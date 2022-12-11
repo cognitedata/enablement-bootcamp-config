@@ -16,14 +16,14 @@ jobs:
                 environment: [test, prod]
                 include:
                     - environment: test
-                      # CDF cluster, like bluefield or greenfield
+                      # CDF cluster, like bluefield, greenfield or westeurope-1
                       CDF_CLUSTER: [CDF cluster]
                       # CDF Project name
                       CDF_PROJECT: [CDF project]
                       # Azure AD tenant id
                       IDP_TENANT: [AAD tenant id]
                     - environment: prod
-                      # CDF cluster, like bluefield or greenfield
+                      # CDF cluster, like bluefield, greenfield or westeurope-1
                       CDF_CLUSTER: [CDF cluster]
                       # CDF Project name
                       CDF_PROJECT: [CDF project]
