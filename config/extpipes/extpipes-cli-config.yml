@@ -26,26 +26,26 @@ extpipe-pattern: '{source}:{short-name}:{rawtable-name}:{suffix}'
 
 # can contain multiple contacts, can be overwritten on pipeline level
 default-contacts:
-    - name: # Contact name
-      email: # Contact email
-      role: # Role name
+    - name: <Contact name>
+      email: <Contact email>
+      role: <Role name>
       send-notification: true
 
 rawdbs:
   # list of raw-dbs > containing rawtables > containing pipelines
-    - rawdb-name: # <node_name>:db
-      dataset-external-id: # <node_name>:ds
-      short-name: # Short name for raw DB
+    - rawdb-name: <node_name>:db
+      dataset-external-id: <node_name>:ds
+      short-name: <Short name for raw DB>
       rawtables:
-          - rawtable-name: # <table_name>
+          - rawtable-name: <table name>
             pipelines:
         # source is a short-name identifying the pipeline source being
         # a 'db-extractor (db)', an 'Azure Function (az-func)',
         # or 'Azure Data Factory (adf)', 'Python script (py)', ..
-                - source: # source_type
+                - source: <source type>
                   schedule: On trigger
                   contacts:
-                      - name: # Contact name
-                        email: # Contact e-mail
-                        role: # Contact role
+                      - name: <Contact name>
+                        email: <Contact e-mail>
+                        role: <Contact role>
                         send-notification: false
