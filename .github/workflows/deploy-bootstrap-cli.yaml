@@ -4,8 +4,8 @@ name: deploy-bootstrap-cli
 on:
     push:
         branches:
-            #- main
-            - none
+            - main
+            #- none
 
 jobs:
     bootstrap_cdf:
