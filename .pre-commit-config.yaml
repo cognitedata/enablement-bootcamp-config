@@ -11,3 +11,14 @@ repos:
       hooks:
           - id: yamlfmt
             args: [--width, '150']
+
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v3.4.0
+      hooks:
+          - id: debug-statements
+          - id: trailing-whitespace
+          - id: check-yaml
+          - id: check-builtin-literals
+          - id: end-of-file-fixer
+          - id: check-ast
+          - id: check-docstring-first

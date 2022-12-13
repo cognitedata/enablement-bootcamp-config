@@ -3,9 +3,9 @@
 externalId: tr-asset-sample
 name: create_asset_sample
 query:
-  file: transformation.sql
+    file: transformation.sql
 destination:
-  type: asset_hierarchy
+    type: asset_hierarchy
 ignoreNullFields: true
 shared: true
 action: upsert
@@ -45,10 +45,10 @@ dataSetExternalId: src:all
 #   audience: ${AUDIENCE}
 
 authentication:
-  clientId: ${COGNITE_CLIENT_ID}
-  clientSecret: ${COGNITE_CLIENT_SECRET}
-  tokenUrl: https://login.microsoftonline.com/16e3985b-ebe8-4e24-9da4-933e21a9fc81/oauth2/v2.0/token
+    clientId: ${COGNITE_CLIENT_ID}
+    clientSecret: ${COGNITE_CLIENT_SECRET}
+    tokenUrl: https://login.microsoftonline.com/16e3985b-ebe8-4e24-9da4-933e21a9fc81/oauth2/v2.0/token
   # Optional: If idP requires providing the scopes
-  cdfProjectName: ${CDF_PROJECT_NAME}
-  scopes:
-    - https://westeurope-1.cognitedata.com/.default
+    cdfProjectName: ${CDF_PROJECT_NAME}
+    scopes:
+        - https://westeurope-1.cognitedata.com/.default

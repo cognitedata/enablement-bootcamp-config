@@ -1,6 +1,6 @@
 ---
 bootstrap:
-  # This is a template bootstrap CLI file that will need to be completed. For a more complete example look at 
+  # This is a template bootstrap CLI file that will need to be completed. For a more complete example look at
   # https://github.com/cognitedata/inso-bootstrap-cli/blob/main/configs/config-deploy-example-v2.yml
 
     features:
@@ -54,29 +54,30 @@ bootstrap:
 
     # Mapping between IDP (Azure Active Directory) groups and CDF groups.
     idp-cdf-mappings:
-    # Support multiple CDF Projects, like dev/test/prod in one config. 
-        - cdf-project: [CDF project name] # i.e. bootcamp-01-test
+    # Support multiple CDF Projects, like dev/test/prod in one config.
+        - cdf-project: <CDF project name> # i.e. bootcamp-01-test
           mappings:
               - cdf-group: cdf:root
-                idp-source-id: [Azure AD group id]
-                idp-source-name: [Azure AD group name]
+                idp-source-id: <Azure AD group id>
+                idp-source-name: <Azure AD group name>
               - cdf-group: cdf:all:owner
-                idp-source-id: [AAD Object Id] # for the AAD Group to be matched to cdf-group
-                idp-source-name: [AAD Group name] # i.e. bootcamp-01-test-all-owner
+                idp-source-id: <AAD Object Id> # for the AAD Group to be matched to cdf-group
+                idp-source-name: <AAD Group name> # i.e. bootcamp-01-test-all-owner
               - cdf-group: cdf:all:read
-                idp-source-id: [AAD Object Id] # for the AAD Group to be matched to cdf-group
-                idp-source-name: [AAD Group name] # i.e. bootcamp-01-test-all-read
+                idp-source-id: <AAD Object Id> # for the AAD Group to be matched to cdf-group
+                idp-source-name: <AAD Group name> # i.e. bootcamp-01-test-all-read
 
 
     namespaces:
         # Typical config will have a namespace for data sources ("src") and a namespace for use cases ("uc")
-        - ns-name: [Namespace name] 
+        - ns-name: <Namespace name>
           description: Data sources for the Ice Cream Factory # HINT
 
           # Node names will normally follow src:001:srcname or uc:001:usecasename naming convention
           ns-nodes:
-              - node-name: [Node name]
+              - node-name: <Node name>
                 description: Data from SAP # HINT
+        # HINT: Add another namespace below
 
 
 # de-facto standards for CDF CogniteClient and logger configuration.
