@@ -4,6 +4,6 @@ SELECT external_id AS externalId,
        name AS name,
        to_metadata(metadata) AS metadata,
        description AS description,
-       'from RAW' AS SOURCE,
+       'from RAW' AS source,
        Dataset_id('src:001:sap:ds') AS dataSetId
 FROM `src:001:sap:db`.assets
