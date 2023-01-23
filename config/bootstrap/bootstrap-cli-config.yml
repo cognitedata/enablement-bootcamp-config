@@ -58,8 +58,8 @@ bootstrap:
         - cdf-project: <CDF project name> # i.e. bootcamp-01-test
           mappings:
               - cdf-group: cdf:root
-                idp-source-id: <Azure AD group id>
-                idp-source-name: <Azure AD group name>
+                idp-source-id: <AAD Group Object id>
+                idp-source-name: <AAD Group name>
               - cdf-group: cdf:all:owner
                 idp-source-id: <AAD Object Id> # for the AAD Group to be matched to cdf-group
                 idp-source-name: <AAD Group name> # i.e. bootcamp-01-test-all-owner
