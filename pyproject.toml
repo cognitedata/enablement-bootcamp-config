@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Angela Dang Atkinson <angela.atkinson@cognite.com>"]
 readme = "README.md"
-packages = [{include = "enablement_bootcamp_config"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
