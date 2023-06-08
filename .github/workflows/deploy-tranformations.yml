@@ -44,7 +44,7 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
-            - uses: cognitedata/transformations-cli@main
+            - uses: cognitedata/transformations-cli@v2.3.9
               with:
                   path: config/transformations
                   client-id: ${{ secrets.CLIENT_ID }}
