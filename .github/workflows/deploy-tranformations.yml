@@ -1,14 +1,12 @@
 ---
-#######################################
-# AUTHENTICATION OPTION 1:            #
-#                          Using OIDC #
-#######################################
 name: Deploy transformations
 
 on:
     push:
         #branches: [main]
         branches: [none]
+        paths:
+            - config/transformations/**
 
 jobs:
     deploy:

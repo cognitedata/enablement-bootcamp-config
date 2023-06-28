@@ -6,6 +6,8 @@ on:
         branches:
             #- main
             - none
+        paths:
+            - config/bootstrap/**
 
 jobs:
     bootstrap_cdf:
