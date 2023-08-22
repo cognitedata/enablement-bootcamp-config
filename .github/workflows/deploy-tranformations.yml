@@ -7,6 +7,7 @@ on:
         branches: [none]
         paths:
             - config/transformations/**
+            - .github/workflows/deploy-transformations.yaml
 
 jobs:
     deploy:
