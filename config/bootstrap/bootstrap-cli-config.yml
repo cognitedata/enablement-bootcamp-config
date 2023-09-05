@@ -8,10 +8,8 @@ bootstrap:
     # allowed values are parsed case-insensitive: [true|yes|YES|..] or [false|no|NO|..]
     # not as strings in quotes "yes" or 'yes'
 
-    # default and recommended is: false
-    #   in CDF 2022 support for this special-groups is not necessary anymore
-    #   check 'bootstrap-cli deploy --help' for more info
-        with-special-groups: false
+    # The default and recommended value is: false
+        with-datamodel-capability: false
 
     # default and recommended is: true
         with-raw-capability: true
@@ -41,6 +39,9 @@ bootstrap:
     # default is: rawdb
     #  recommended is shorter 'db' or minimal ''
         rawdb-suffix: db
+
+    # Suffix added to all space names. The recommended value is spc. Defaults to space
+        space-suffix: spc
 
     # default is" ['state']
     #   meant for separating the statestores from extractors from ingested data
