@@ -6,6 +6,9 @@ on:
         branches:
             #- main
             - none
+        paths:
+            - config/bootstrap/**
+            - .github/workflows/deploy-bootstrap-cli.yaml
 
 jobs:
     bootstrap_cdf:
